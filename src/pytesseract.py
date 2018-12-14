@@ -43,6 +43,9 @@ OSD_KEYS = {
     'Script confidence': ('script_conf', float)
 }
 
+# psm mode changed from -psm N to --psm N after release 3.05.00
+# https://github.com/tesseract-ocr/tesseract/wiki/ReleaseNotes#tesseract-release-notes-feb-16-2017---v30500
+PSM_FLAG_CHANGE_VERSION = LooseVersion('3.05.00')
 
 class Output:
     BYTES = 'bytes'
@@ -75,6 +78,13 @@ class TSVNotSupported(EnvironmentError):
         super(TSVNotSupported, self).__init__(
             'TSV output not supported. Tesseract >= 3.05 required'
         )
+
+# Swap out the incorrect flag
+def psm_flag(config):
+    if '--psm' in config and get_tesseract_version() < PSM_FLAG_CHANGE_VERSION:
+        return config.replace("--psm", "-psm")
+    else:
+        return config
 
 
 def run_once(func):
@@ -175,6 +185,8 @@ def run_tesseract(input_filename,
     if lang is not None:
         cmd_args += ('-l', lang)
 
+    # parse for --psm flag where -psm is required
+    config = psm_flag(config)
     cmd_args += shlex.split(config)
 
     if extension not in ('box', 'osd', 'tsv'):
