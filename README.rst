@@ -1,6 +1,8 @@
 Python Tesseract
 ================
 
+**NOTE: Added a test for versions of Tesseract < 3.05.00 and inject -psm flag instead of --psm**
+
 .. image:: https://img.shields.io/pypi/v/pytesseract.svg
    :target: https://pypi.python.org/pypi/pytesseract
    :alt: PyPI release
