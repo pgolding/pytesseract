@@ -14,18 +14,18 @@ PACKAGE_DIR = 'src'
 
 setup(
     name=PACKAGE_NAME,
-    version='0.2.6',
+    version='0.2.61',
     author='Samuel Hoffstaetter',
     author_email='samuel@hoffstaetter.com',
-    maintainer='Matthias Lee',
-    maintainer_email='pytesseract@madmaze.net',
+    maintainer='Paul Golding',
+    maintainer_email='goldingp@gmail.com',
     description=(
         "Python-tesseract is a python wrapper for Google's Tesseract-OCR"
     ),
     long_description=LONG_DESC,
     license='GPLv3',
     keywords='python-tesseract OCR Python',
-    url='https://github.com/madmaze/python-tesseract',
+    url='https://github.com/pgolding/pytesseract',
     packages=[PACKAGE_NAME],
     package_dir={PACKAGE_NAME: PACKAGE_DIR},
     include_package_data=True,
